@@ -3,7 +3,9 @@
 
 #include <string.h>
 
-// Simple imitation of string_view<char> in C++17.
+namespace cpputil {
+
+// Simple implementation of string_view in C++17
 class CharSequence {
  public:
   static constexpr size_t npos = size_t(-1);
@@ -53,9 +55,13 @@ class CharSequence {
   void rangeCheck(size_t pos) const;
 };
 
+}  // namespace cpputil
+
 #include <assert.h>
 #include <algorithm>
 #include "fixed_error_buffer.h"
+
+namespace cpputil {
 
 inline const char& CharSequence::at(size_t pos) const {
   if (pos >= size()) {
@@ -98,5 +104,7 @@ inline void CharSequence::remove_suffix(size_t n) {
   data_ += n;
   size_ -= n;
 }
+
+}  // namespace cpputil
 
 #endif  // CHAR_SEQUENCE_H

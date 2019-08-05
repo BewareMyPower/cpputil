@@ -1,4 +1,5 @@
 #include "char_sequence.h"
+using cpputil::CharSequence;
 
 #include <iostream>
 #include <string>
