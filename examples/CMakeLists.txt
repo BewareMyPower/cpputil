@@ -1,9 +1,17 @@
-set(TARGET consumer)
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-
 include_directories(../src)
 
-add_executable(test_timer test_timer.cc)
-target_link_libraries(test_timer cpputil)
+set(SOURCES
+    test_char_sequence.cc
+    test_timer.cc
+)
 
-install(TARGETS test_timer RUNTIME DESTINATION bin)
+foreach(SOURCE ${SOURCES})
+    string(FIND ${SOURCE} ".cc" LENGTH)
+    string(SUBSTRING ${SOURCE} 0 ${LENGTH} PROG)
+
+    add_executable(${PROG} ${SOURCE})
+    target_link_libraries(${PROG} cpputil)
+    install(TARGETS ${PROG} RUNTIME DESTINATION bin)
+endforeach()
+
+

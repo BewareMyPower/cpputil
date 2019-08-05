@@ -3,6 +3,7 @@ set(SOURCES
     timer_imp.cc
 )
 set(HEADERS
+    char_sequence.h
     timer.h
 )
 
