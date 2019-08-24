@@ -1,7 +1,7 @@
 include_directories(../src)
 
 set(SOURCES
-    test_char_sequence.cc
+    test_string_view.cc
     test_timer.cc
 )
 
