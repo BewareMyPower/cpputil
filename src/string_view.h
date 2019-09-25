@@ -1,5 +1,5 @@
-#ifndef CHAR_SEQUENCE_H
-#define CHAR_SEQUENCE_H
+#ifndef STRING_VIEW_H
+#define STRING_VIEW_H
 
 #include <assert.h>
 #include <stdio.h>
@@ -17,9 +17,9 @@ class string_view {
   static constexpr size_t npos = size_t(-1);
   constexpr string_view() noexcept = default;
   constexpr string_view(const string_view&) = default;
-  constexpr string_view(const char* ptr, size_t size) noexcept : data_(ptr),
-                                                                 size_(size) {}
-  constexpr string_view(const char* s) noexcept : string_view(s, strlen(s)) {}
+  constexpr string_view(const char* ptr, size_t size)
+      : data_(ptr), size_(size) {}
+  constexpr string_view(const char* s) : string_view(s, strlen(s)) {}
 
   string_view& operator=(const string_view&) = default;
 
@@ -77,7 +77,38 @@ class string_view {
                : (throwOutOfRange("substr", pos), *this);
   }
 
-  // TODO: compare(), find() series, operator==,<,>,<=,>=,<<
+  int compare(string_view v) const noexcept {
+    return memcmp(data(), v.data(), size());
+  }
+  int compare(size_t pos1, size_t count1, string_view v) const {
+    return substr(pos1, count1).compare(v);
+  }
+  int compare(size_t pos1, size_t count1, string_view v, size_t pos2,
+              size_t count2) const {
+    return substr(pos1, count1).compare(v.substr(pos2, count2));
+  }
+  int compare(const char* s) const { return compare(string_view(s)); }
+  int compare(size_t pos1, size_t count1, const char* s) const {
+    return substr(pos1, count1).compare(s);
+  }
+  int compare(size_t pos1, size_t count1, const char* s, size_t count2) const {
+    return substr(pos1, count1).compare(string_view(s, count2));
+  }
+
+  // NOTE: find() methods in C++17 are  functions
+  size_t find(string_view v, size_t pos = 0) const noexcept {
+    return std::distance(
+        cbegin(), std::search(cbegin() + pos, cend(), v.cbegin(), v.cend()));
+  }
+  size_t find(char ch, size_t pos = 0) const noexcept {
+    return find(string_view(std::addressof(ch), 1), pos);
+  }
+  size_t find(const char* s, size_t pos, size_t count) const {
+    return find(string_view(s, count), pos);
+  }
+  size_t find(const char* s, size_t pos = 0) const {
+    return find(string_view(s), pos);
+  }
 
  private:
   const char* data_ = nullptr;
@@ -93,8 +124,34 @@ class string_view {
   }
 };
 
-}  // namespace cpputil::cxx17
+inline bool operator==(string_view lhs, string_view rhs) noexcept {
+  return lhs.compare(rhs) == 0;
+}
+
+inline bool operator!=(string_view lhs, string_view rhs) noexcept {
+  return lhs.compare(rhs) != 0;
+}
+
+inline bool operator<(string_view lhs, string_view rhs) noexcept {
+  return lhs.compare(rhs) < 0;
+}
+
+inline bool operator<=(string_view lhs, string_view rhs) noexcept {
+  return lhs.compare(rhs) <= 0;
+}
+
+inline bool operator>(string_view lhs, string_view rhs) noexcept {
+  return lhs.compare(rhs) > 0;
+}
+
+inline bool operator>=(string_view lhs, string_view rhs) noexcept {
+  return lhs.compare(rhs) >= 0;
+}
+
+// TODO: Implement it with std::ostream::sentry
+
+}  // namespace cxx17
 
 }  // namespace cpputil
 
-#endif  // CHAR_SEQUENCE_H
+#endif  // STRING_VIEW_H
