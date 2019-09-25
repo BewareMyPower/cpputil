@@ -1,8 +1,10 @@
 set(SOURCES
+    string_format.cc
     timer.cc
     timer_imp.cc
 )
 set(HEADERS
+    string_format.h
     string_view.h
     timer.h
 )
