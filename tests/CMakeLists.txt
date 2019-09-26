@@ -14,5 +14,3 @@ foreach(SOURCE ${SOURCES})
     target_link_libraries(${PROG} cpputil)
     install(TARGETS ${PROG} RUNTIME DESTINATION bin)
 endforeach()
-
-

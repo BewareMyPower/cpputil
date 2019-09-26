@@ -14,4 +14,4 @@ string(REPLACE ";" " " CMAKE_CXX_FLAGS "${CXX_FLAGS}")
 message(${CMAKE_CXX_FLAGS})
 
 add_subdirectory(src)
-add_subdirectory(examples)
+add_subdirectory(tests)
