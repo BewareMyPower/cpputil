@@ -1,4 +1,5 @@
 #!/bin/bash
+SHELL_DIR=`cd $(dirname $0) && echo $PWD`
 set -o errexit
 
 function usage() {
@@ -37,6 +38,7 @@ function install() {
     if [[ $WITH_TESTS == true ]]; then
         CMAKE_OPTIONS="$CMAKE_OPTIONS -DCMAKE_BUILD_TESTS=1"
     fi
+    cd $SHELL_DIR
     mkdir -p build && cd build
     echo "Install cpputil to $INSTALL_DIR"
     cmake .. $CMAKE_OPTIONS
@@ -99,10 +101,7 @@ if [[ $# -ne 0 ]]; then
 fi
 
 if [[ $UNINSTALL == false ]]; then
-    SHELL_DIR=`cd $(dirname $0) && echo $PWD`
-    cd $SHELL_DIR
     install $CMAKE_INSTALL_PREFIX
 else
     uninstall $UNINSTALL_DIR
-    exit 0
 fi
