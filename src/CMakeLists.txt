@@ -12,4 +12,4 @@ set(HEADERS
 add_library(cpputil ${SOURCES})
 
 install(TARGETS cpputil DESTINATION lib)
-install(FILES ${HEADERS} DESTINATION include)
+install(FILES ${HEADERS} DESTINATION include/cpputil)
