@@ -13,7 +13,7 @@ Options:
                         include/  Headers (*.h)
                         lib/      Libraries (*.a)
                         bin/      Unit test binaries if --with-tests was specified
-                      (default: /usr/local)
+                      (default: ./cpputil)
   -u, --uninstall DIR remove headers, libraries and binaries under DIR
                       other options will be ignored if it's specified
   --with-tests        build unit test binaries
@@ -81,7 +81,7 @@ fi
 eval set -- "$PARSED"
 
 UNINSTALL=false
-CMAKE_INSTALL_PREFIX=/usr/local
+CMAKE_INSTALL_PREFIX=`pwd`/cpputil
 
 while true; do
     case "$1" in

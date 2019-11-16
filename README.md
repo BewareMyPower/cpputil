@@ -4,7 +4,7 @@ A Linux util library based on C++11.
 
 ## How to use
 
-Install **cpputil** to `<INSTALL_PATH>`:
+Install **cpputil** to `<INSTALL_PATH>` (default: `./cpputil`):
 
 ```bash
 ./build.sh -i <INSTALL_PATH>
