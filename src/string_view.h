@@ -1,5 +1,5 @@
-#ifndef STRING_VIEW_H
-#define STRING_VIEW_H
+#ifndef CPPUTIL_STRING_VIEW_H
+#define CPPUTIL_STRING_VIEW_H
 
 #include <assert.h>
 #include <stdio.h>
@@ -154,4 +154,4 @@ inline bool operator>=(string_view lhs, string_view rhs) noexcept {
 
 }  // namespace cpputil
 
-#endif  // STRING_VIEW_H
+#endif  // CPPUTIL_STRING_VIEW_H

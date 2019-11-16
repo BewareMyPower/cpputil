@@ -1,5 +1,5 @@
-#ifndef TIMER_IMP_H
-#define TIMER_IMP_H
+#ifndef CPPUTIL_TIMER_IMP_H
+#define CPPUTIL_TIMER_IMP_H
 
 #include "timer.h"
 
@@ -22,4 +22,4 @@ class Timer::Imp final {
 
 }  // namespace cpputil
 
-#endif  // TIMER_IMP_H
+#endif  // CPPUTIL_TIMER_IMP_H

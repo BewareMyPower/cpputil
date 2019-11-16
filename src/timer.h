@@ -1,5 +1,5 @@
-#ifndef TIMER_H
-#define TIMER_H
+#ifndef CPPUTIL_TIMER_H
+#define CPPUTIL_TIMER_H
 
 #include <memory>
 
@@ -32,4 +32,4 @@ class Timer final {
 
 }  // namespace cpputil
 
-#endif  // TIMER_H
+#endif  // CPPUTIL_TIMER_H

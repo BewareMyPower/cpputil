@@ -1,5 +1,5 @@
-#ifndef STRING_FORMAT_H
-#define STRING_FORMAT_H
+#ifndef CPPUTIL_STRING_FORMAT_H
+#define CPPUTIL_STRING_FORMAT_H
 
 #include <assert.h>
 #include <string>
@@ -57,4 +57,4 @@ inline void appendFormatString(std::string& s, const char* format,
 
 }  // namespace cpputil
 
-#endif  // STRING_FORMAT_H
+#endif  // CPPUTIL_STRING_FORMAT_H
