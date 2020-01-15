@@ -4,6 +4,7 @@ set(SOURCES
     timer_imp.cc
 )
 set(HEADERS
+    range.h
     string_format.h
     string_view.h
     timer.h
