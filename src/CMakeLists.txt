@@ -5,6 +5,7 @@ set(SOURCES
 )
 set(HEADERS
     range.h
+    string_buffer.h
     string_format.h
     string_view.h
     timer.h
