@@ -1,5 +1,6 @@
 #include "cpputil/range.h"
 #include "cpputil/string_buffer.h"
+#include "cpputil/string_format.h"
 #include "cpputil/timer.h"
 
 #include <time.h>
@@ -65,26 +66,3 @@ int main(int argc, char* argv[]) {
 
   return 0;
 }
-/**
- * test result with g++ 5.4:
- * $ ./string_buffer_performance.out
- * stringstream: 10163 us (299629 bytes)
- * StringBuffer: 8043 us (299551 bytes)
- * string:       7549 us (299551 bytes)
- * $ ./string_buffer_performance.out
- * stringstream: 6751 us (299629 bytes)
- * StringBuffer: 5652 us (299551 bytes)
- * string:       7553 us (299551 bytes)
- * $ ./string_buffer_performance.out
- * stringstream: 12418 us (299551 bytes)
- * StringBuffer: 9617 us (299580 bytes)
- * string:       8595 us (299580 bytes)
- * $ ./string_buffer_performance.out
- * stringstream: 7151 us (299625 bytes)
- * StringBuffer: 5676 us (299578 bytes)
- * string:       5436 us (299578 bytes)
- *
- * Because std::string is actually a string buffer, it seems StringBuffer is not better.
- * g++ 5.4 uses SSO (Short String Optimization), the initial short char array is char[16],
- * when the capacity is not enough, the size grows twice before
- */
