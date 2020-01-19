@@ -1,5 +1,5 @@
-#ifndef STRING_BUFFER_H
-#define STRING_BUFFER_H
+#ifndef CPPUTIL_STRING_BUFFER_H
+#define CPPUTIL_STRING_BUFFER_H
 
 #include "string_view.h"
 
@@ -46,6 +46,8 @@ class StringBuffer final {
     return {buffer_.data(), buffer_.size()};
   }
 
+  std::string detach() { return std::move(buffer_); }
+
   void clear() { buffer_.clear(); }
 
   size_t capacity() const noexcept { return buffer_.size(); }
@@ -91,4 +93,4 @@ class StringBuffer final {
 
 }  // namespace cpputil
 
-#endif  // STRING_BUFFER_H
+#endif  // CPPUTIL_STRING_BUFFER_H
