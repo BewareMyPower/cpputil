@@ -1,6 +1,7 @@
 include_directories(../src)
 
 set(SOURCES
+    test_container.cc
     test_range.cc
     test_string_buffer.cc
     test_string_format.cc

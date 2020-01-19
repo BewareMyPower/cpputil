@@ -53,7 +53,7 @@ class StringBuffer final {
   size_t capacity() const noexcept { return buffer_.size(); }
 
   StringBuffer& operator<<(const char* s) {
-    buffer_ += s;
+    buffer_ += (s ? s : "");
     return *this;
   }
 
@@ -85,6 +85,11 @@ class StringBuffer final {
   StringBuffer& operator<<(T x) {
     buffer_ += std::to_string(x);
     return *this;
+  }
+
+  template <typename First, typename Second>
+  StringBuffer& operator<<(const std::pair<First, Second>& x) {
+    return (*this) << x.first << " => " << x.second;
   }
 
  private:
